@@ -4,7 +4,7 @@ services:
 before_install:
   - docker build -t saikrishnaboda/fibi -f ./client/Dockerfile.dev ./client
 script:
-  - docker run -e CI=true fibi npm test -- --coverage
+  - docker run -e CI=true saikrishnaboda/fibi npm test -- --coverage
 after_success:
   - docker build -t saikrishnaboda/multi-client -f ./client/Dockerfile.dev ./client
   - docker build -t saikrishnaboda/multi-server -f ./server/Dockerfile.dev ./server
