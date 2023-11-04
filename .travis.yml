@@ -2,14 +2,14 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t fibi -f ./client/Dockerfile.dev ./client
+  - docker build -t saikrishnaboda/fibi -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true fibi npm test -- --coverage
 after_success:
-  - docker build -t multi-client -f ./client/Dockerfile.dev ./client
-  - docker build -t multi-server -f ./server/Dockerfile.dev ./server
-  - docker build -t multi-worker -f ./worker/Dockerfile.dev ./worker
-  - docker build -t multi-nginx -f ./nginx/Dockerfile.dev ./nginx
+  - docker build -t saikrishnaboda/multi-client -f ./client/Dockerfile.dev ./client
+  - docker build -t saikrishnaboda/multi-server -f ./server/Dockerfile.dev ./server
+  - docker build -t saikrishnaboda/multi-worker -f ./worker/Dockerfile.dev ./worker
+  - docker build -t saikrishnaboda/multi-nginx -f ./nginx/Dockerfile.dev ./nginx
   - echo $"DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
   - docker push multi-client
   - docker push multi-server
