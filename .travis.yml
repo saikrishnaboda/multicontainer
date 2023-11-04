@@ -1,7 +1,7 @@
 sudo: required
 services:
-  -docker
+  - docker
 before_install:
-  -docker build -t fibi -f ./client/Dockerfile.dev ./client
+  - docker build -t fibi -f ./client/Dockerfile.dev ./client
 script:
-  -docker run -e CI=true fibi npm run test -- --coverage
+  - docker run -e CI=true fibi npm test -- --coverage
