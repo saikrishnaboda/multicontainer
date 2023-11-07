@@ -6,11 +6,10 @@ before_install:
 script:
   - docker run -e CI=true saikrishnaboda/fibi npm test -- --coverage
 after_success:
-  - echo $"DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
-  - docker build -t saikrishnaboda/multi-client -f ./client/Dockerfile.dev ./client
-  - docker build -t saikrishnaboda/multi-server -f ./server/Dockerfile.dev ./server
-  - docker build -t saikrishnaboda/multi-worker -f ./worker/Dockerfile.dev ./worker
-  - docker build -t saikrishnaboda/multi-nginx -f ./nginx/Dockerfile.dev ./nginx
+  - docker build -t saikrishnaboda/multi-client ./client
+  - docker build -t saikrishnaboda/multi-server ./server
+  - docker build -t saikrishnaboda/multi-worker ./worker
+  - docker build -t saikrishnaboda/multi-nginx ./nginx
   - docker push saikrishnaboda/multi-client
   - docker push saikrishnaboda/multi-server
   - docker push saikrishnaboda/multi-worker
